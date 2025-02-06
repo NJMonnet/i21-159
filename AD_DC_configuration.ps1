@@ -2,6 +2,7 @@
 $Domain = "ICT159.private"
 $OUAdmin = "OU=Administration,DC=ICT159,DC=private"
 $OUProduction = "OU=Production,DC=ICT159,DC=private"
+$OUPath = "DC=ICT159,DC=private"
 
 New-ADOrganizationalUnit -Name "Administration" -Path "DC=ICT159,DC=private" -ProtectedFromAccidentalDeletion $false
 New-ADOrganizationalUnit -Name "Production" -Path "DC=ICT159,DC=private" -ProtectedFromAccidentalDeletion $false
