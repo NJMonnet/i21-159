@@ -1,7 +1,7 @@
 ## Installation et configuration du service DNS
 # https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
 
-Install-WindowsFeature -Name DNS
+Install-WindowsFeature -Name DNS -IncludeManagementTools
 
 # Configuration de l'interface
 $IPAddress = "192.168.1.48"
