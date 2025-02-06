@@ -39,11 +39,9 @@ Add-ADGroupMember -Identity "Direction" -Members "alainduboix"
 Add-ADGroupMember -Identity "Secrétaires" -Members "aliceduboix", "pjaccard"
 
 # Activation de la corbeille AD
-# Importation du module Active Directory
 Import-Module ActiveDirectory
 
-# Activation de la corbeille AD
 Enable-ADOptionalFeature -Identity 'Recycle Bin Feature' `
                          -Scope ForestOrConfigurationSet `
-                         -Target 'ICT159.private' `
+                         -Target $Domain `
                          -Confirm:$false
