@@ -1,17 +1,17 @@
 # Configuration de base du serveur
-$ServerName = AD-DC1
-$NomDuDisque = HDD_SYS
+$ServerName = "AD-DC1"
+$NomDuDisque = "HDD_SYS"
 $InterfaceReseau = (Get-NetConnectionProfile).InterfaceIndex
-$IPAddress = 10.0.2.10
-$Gateway = 10.0.2.1
-$DnsPrimaire = 127.0.0.1
-$DnsSecondaire = 9.9.9.9
+$IPAddress = "10.0.2.10"
+$Gateway = "10.0.2.1"
+$DnsPrimaire = "127.0.0.1"
+$DnsSecondaire = "9.9.9.9"
 
 # Modification du Hostname
-Rename-Computer -NewName "$ServerName"
+Rename-Computer -NewName $ServerName
 
 # Modification du nom du disque "C"
-Rename-Volume -DriveLetter C -NewLabel "$NomDuDisque"
+Rename-Volume -DriveLetter C -NewLabel $NomDuDisque
 
 # Modification de l'adresse IP sur l'interface reseau active
 # https://www.technig.com/configure-ip-address-using-powershell/
@@ -25,15 +25,15 @@ Set-DnsClientServerAddress -InterfaceIndex $InterfaceReseau -ServerAddresses $Dn
 Install-WindowsFeature -Name DNS
 
 # Configuration de l'interface
-$IPAddress = 10.0.2.10
+$IPAddress = "10.0.2.10"
 
 $DnsServerSettings = Get-DnsServerSetting -ALL
-$DnsServerSettings.ListeningIpAddress = @("$IPAddress")
+$DnsServerSettings.ListeningIpAddress = @($IPAddress)
 Set-DNSServerSetting $DnsServerSettings
 
 # Configuration de la redirection des requêtes
-$DnsServer1 = 9.9.9.9
-$DnsServer2 = 1.1.1.1
+$DnsServer1 = "9.9.9.9"
+$DnsServer2 = "1.1.1.1"
 
 Set-DnsServerForwarder -IPAddress $DnsServer1, $DnsServer2
 
