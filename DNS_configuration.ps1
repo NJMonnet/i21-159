@@ -4,7 +4,7 @@
 Install-WindowsFeature -Name DNS
 
 # Configuration de l'interface
-$IPAddress = "10.0.2.10"
+$IPAddress = "192.168.1.48"
 
 $DnsServerSettings = Get-DnsServerSetting -ALL
 $DnsServerSettings.ListeningIpAddress = @($IPAddress)
