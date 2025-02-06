@@ -15,3 +15,4 @@ $DnsServer1 = "9.9.9.9"
 $DnsServer2 = "1.1.1.1"
 
 Set-DnsServerForwarder -IPAddress $DnsServer1, $DnsServer2
+
