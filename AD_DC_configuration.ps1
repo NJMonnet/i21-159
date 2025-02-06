@@ -37,3 +37,13 @@ New-ADGroup -Name "Secrétaires" -GroupScope Global -GroupCategory Security -Pat
 # Ajout des utilisateurs dans le bon groupe
 Add-ADGroupMember -Identity "Direction" -Members "alainduboix"
 Add-ADGroupMember -Identity "Secrétaires" -Members "aliceduboix", "pjaccard"
+
+# Activation de la corbeille AD
+# Importation du module Active Directory
+Import-Module ActiveDirectory
+
+# Activation de la corbeille AD
+Enable-ADOptionalFeature -Identity 'Recycle Bin Feature' `
+                         -Scope ForestOrConfigurationSet `
+                         -Target 'ICT159.private' `
+                         -Confirm:$false
