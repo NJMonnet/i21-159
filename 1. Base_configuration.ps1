@@ -2,10 +2,10 @@
 $ServerName = "AD-DC1"
 $NomDuDisque = "HDD_SYS"
 $InterfaceReseau = (Get-NetConnectionProfile).InterfaceIndex
-$IPAddress = "10.0.2.10"
-$Gateway = "10.0.2.1"
-$DnsPrimaire = "127.0.0.1"
-$DnsSecondaire = "9.9.9.9"
+$IPAddress = "192.168.1.48"
+$Gateway = "192.168.1.1"
+$DnsPrimaire = "192.168.1.49"
+$DnsSecondaire = "127.0.0.1"
 
 # Modification du Hostname
 Rename-Computer -NewName $ServerName
