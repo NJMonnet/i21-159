@@ -5,7 +5,7 @@ $InterfaceReseau = (Get-NetConnectionProfile).InterfaceIndex
 $IPAddress = "192.168.1.49"
 $Gateway = "192.168.1.1"
 $DnsPrimaire = "192.168.1.48"
-$DnsSecondaire = "192.168.1.49"
+$DnsSecondaire = "127.0.0.1"
 
 # Modification du Hostname
 Rename-Computer -NewName $ServerName
