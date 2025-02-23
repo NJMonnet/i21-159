@@ -31,4 +31,27 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' 
 # Setting the NLA information to Enabled
 (Get-WmiObject -class "Win32_TSGeneralSetting" -Namespace root\cimv2\terminalservices -ComputerName $ServerName -Filter "TerminalName='RDP-tcp'").SetUserAuthenticationRequired(1)
 
+
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name NoAutoUpdate -Value 1
+
+
+Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools
+
+#https://woshub.com/add-domain-controller-existing-ad-domain/
+Add-Computer -DomainName "ICT159.private" -OUPath "OU=Domain Controllers,DC=ICT159,DC=private" 
+
+#https://woshub.com/add-domain-controller-existing-ad-domain/
+Import-Module ADDSDeployment
+Install-ADDSDomainController `
+    -NoGlobalCatalog:$false `
+    -CreateDnsDelegation:$false `
+    -CriticalReplicationOnly:$false `
+    -DatabasePath "C:\Windows\NTDS" `
+    -DomainName "ICT159.private" `
+    -InstallDns:$true `
+    -LogPath "C:\Windows\NTDS" `
+    -NoRebootOnCompletion:$false `
+    -SiteName "Default-First-Site-Name" `
+    -SysvolPath "C:\Windows\SYSVOL" `
+    -Force:$true `
+    -Credential (Get-Credential)
